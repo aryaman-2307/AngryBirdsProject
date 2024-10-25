@@ -3,23 +3,68 @@ package com.angrybirds.BirdTypes;
 import com.angrybirds.PigTypes.Pigs;
 import com.angrybirds.StructureTypes.Structures;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 
-public class YellowBird extends Birds {
-    public YellowBird(Texture texture) {
-        super(texture); // Use the default constructor
+public abstract class Birds {
+    protected Vector2 position;
+    protected Vector2 velocity;
+    protected Texture texture;
+    protected boolean launched;
+
+    public Birds(Texture texture) {
+        this(texture, 0, 0); // Default position set to (0, 0)
     }
 
-    public YellowBird(Texture texture, float x, float y) {
-        super(texture, x, y); // Set position during creation
+    public Birds(Texture texture, float x, float y) {
+        this.texture = texture;
+        this.position = new Vector2(x, y);
+        this.velocity = new Vector2(0, 0);
+        this.launched = false; // Initially, the bird is not launched
     }
 
-    @Override
-    public void hitStructure(Structures structure) {
-        structure.takeDamage(0.5f); // Less impact for the YellowBird
+    public void draw(SpriteBatch batch) {
+        batch.draw(texture, position.x, position.y, 50, 50); // Adjust size for the bird
     }
 
-    @Override
-    public void hitPig(Pigs pig) {
-        pig.takeDamage(0.5f); // Less impact for the YellowBird
+    public Rectangle getBoundingBox() {
+        return new Rectangle(position.x, position.y, 50, 50); // Adjust size for collision detection
     }
+
+    public Vector2 getPosition() {
+        return position;
+    }
+
+    public void setPosition(float x, float y) {
+        this.position.set(x, y);
+    }
+
+    public boolean isLaunched() {
+        return launched;
+    }
+
+    public void launch() {
+        this.launched = true; // Bird is launched
+        // Add logic to set the initial velocity of the bird here, if required.
+    }
+
+    public void update(float delta) {
+        if (launched) {
+            // Update the bird's position based on velocity, gravity, or any other physics.
+            position.add(velocity.cpy().scl(delta));
+        }
+    }
+
+    public void setVelocity(float x, float y) {
+        this.velocity.set(x, y);
+    }
+
+    public Vector2 getVelocity() {
+        return velocity;
+    }
+
+    public abstract void hitStructure(Structures structure);
+
+    public abstract void hitPig(Pigs pig);
 }
