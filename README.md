@@ -9,7 +9,7 @@
    ```
 
 2. **Install Dependencies**
-   Make sure you have [Java](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) and [Gradle](https://gradle.org/install/) installed. You can check if you have them by running:
+   Make sure [Java](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) and [Gradle](https://gradle.org/install/) are installed. You can check if you have them by running:
    ```bash
    java -version
    gradle -v
