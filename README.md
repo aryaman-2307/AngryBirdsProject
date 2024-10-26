@@ -1,7 +1,3 @@
-Here's a README file that details the commands for setting up, running, and testing your Angry Birds project, along with a brief explanation of the code.
-
----
-
 # Angry Birds Game README
 
 ## Project Setup
