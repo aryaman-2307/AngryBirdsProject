@@ -1,33 +1,43 @@
-# AngryBirdsProject
+Here's a README file that details the commands for setting up, running, and testing your Angry Birds project, along with a brief explanation of the code.
 
-A [libGDX](https://libgdx.com/) project generated with [gdx-liftoff](https://github.com/libgdx/gdx-liftoff).
+---
 
-This project was generated with a template including simple application launchers and a main class extending `Game` that sets the first screen.
+# Angry Birds Game README
 
-## Platforms
+## Project Setup
 
-- `core`: Main module with the application logic shared by all platforms.
-- `lwjgl3`: Primary desktop platform using LWJGL3; was called 'desktop' in older docs.
+1. **Clone the Repository**
+   ```bash
+   git clone <repository-url>
+   cd <repository-directory>
+   ```
 
-## Gradle
+2. **Install Dependencies**
+   Make sure you have [Java](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) and [Gradle](https://gradle.org/install/) installed. You can check if you have them by running:
+   ```bash
+   java -version
+   gradle -v
+   ```
 
-This project uses [Gradle](https://gradle.org/) to manage dependencies.
-The Gradle wrapper was included, so you can run Gradle tasks using `gradlew.bat` or `./gradlew` commands.
-Useful Gradle tasks and flags:
+3. **Build the Project**
+   ```bash
+   gradle build
+   ```
 
-- `--continue`: when using this flag, errors will not stop the tasks from running.
-- `--daemon`: thanks to this flag, Gradle daemon will be used to run chosen tasks.
-- `--offline`: when using this flag, cached dependency archives will be used.
-- `--refresh-dependencies`: this flag forces validation of all dependencies. Useful for snapshot versions.
-- `build`: builds sources and archives of every project.
-- `cleanEclipse`: removes Eclipse project data.
-- `cleanIdea`: removes IntelliJ project data.
-- `clean`: removes `build` folders, which store compiled classes and built archives.
-- `eclipse`: generates Eclipse project data.
-- `idea`: generates IntelliJ project data.
-- `lwjgl3:jar`: builds application's runnable jar, which can be found at `lwjgl3/build/libs`.
-- `lwjgl3:run`: starts the application.
-- `test`: runs unit tests (if any).
+4. **Run the Project**
+   ```bash
+   gradle run
+   ```
 
-Note that most tasks that are not specific to a single project can be run with `name:` prefix, where the `name` should be replaced with the ID of a specific project.
-For example, `core:clean` removes `build` folder only from the `core` project.
+## Testing the Project
+
+To test the game, simply run the project as mentioned above. You can interact with the game using the following commands:
+- **Resume Game:** Click on the "Resume" button to continue your last session.
+- **Save Game:** Click on the "Save Game" button to save your progress.
+- **Home:** Click on the "Home" button to return to the home screen.
+
+## Brief Explanation of the Code
+
+The code implements a basic Angry Birds game using the LibGDX framework. It consists of multiple screens, including a main menu and a pause screen, which provide navigation and interaction capabilities. The `MenuScreen` class allows users to resume their game or return to the home screen, while the `PauseScreen` class includes functionality to resume the game, save progress, and navigate back to the home screen. The game features a user-friendly interface with styled buttons and custom fonts, enhancing the overall gameplay experience.
+
+--- 
