@@ -47,23 +47,20 @@ To verify installations, open a terminal and check the versions:
        Adjust paths if files are organized in subdirectories.
 
 **3. Run the Project**
-   - For an IDE, locate the `LWJGL3Launcher` class under `core/src/main/java/com/angrybirds` and click **Run**.
-   - For the terminal, navigate to the `bin` directory and execute:
-     ```bash
-     java -cp bin com.angrybirds.LWJGL3Launcher
-     ```
+   - For an IDE, locate the `LWJGL3Launcher` class under `lwjgl3/src/main/java/com/angrybirds/lwjgl3/Lwjgl3Launcher.java` and click **Run**.
+
 
 ## Project Structure
 
-The game code is organized across multiple classes and screens, each contributing to gameplay functionality. The primary code structure is found under `core/src/main/java/com/angrybirds` and consists of the following:
+lwjgl3: Contains the LWJGL3Launcher, responsible for initializing and launching the game with the LWJGL3 backend. This setup manages window dimensions, display settings, and other core configurations essential for rendering the GUI and integrating with LibGDX’s windowing system.
 
-- **LWJGL3Launcher**: Initializes the game. Acts as the entry point for launching the project using the LWJGL3 framework, setting up the window and managing essential configurations.
+The game code is organized across multiple classes and screens, each contributing to gameplay functionality. The primary code structure is found under `core/src/main/java/com/angrybirds` and consists of the following:
   
 - **MenuScreen**: The main menu where players can resume a saved game, start a new one, or return to the home screen. Styled buttons enhance the user interface and align with the game’s visual theme.
   
 - **PauseScreen**: Pauses the game, offering options to resume, save, or return to the main menu. A semi-transparent overlay and UI elements convey the paused state effectively.
   
-- **GameplayScreen**: Contains the core gameplay mechanics, including the slingshot and the physics-based trajectory calculations. Handles player interactions with the slingshot to launch birds at targets, aiming to simulate the classic Angry Birds experience.
+- **LevelScreen**: Contains the core gameplay mechanics, including the slingshot and the physics-based trajectory calculations. Handles player interactions with the slingshot to launch birds at targets, aiming to simulate the classic Angry Birds experience.
 
 Each screen includes UI components such as `TextButton` and `Table`, utilizing LibGDX’s scene2d library for layout management. Custom fonts and button themes are defined in `uiskin.json`, creating a visually cohesive and engaging experience.
 
@@ -97,5 +94,5 @@ To test the game’s functionality:
 
 ## Brief Explanation of the Code
 
-The code for this Angry Birds game, implemented in Java with the LibGDX framework, provides an interactive, multi-screen experience with essential functionalities such as game pause, save, and resume. The `MenuScreen` allows navigation, the `PauseScreen` provides pause options, and `GameplayScreen` handles core game mechanics. Selecting "Load Game" defaults to Level 1, and "Save Game" currently outputs a placeholder message. Styled buttons and custom fonts enhance the user experience, supporting scalability for future expansion with minimal modifications.
+The code for this Angry Birds game, implemented in Java with the LibGDX framework, provides an interactive, multi-screen experience with essential functionalities such as game pause, save, and resume. The `MenuScreen` allows navigation, the `PauseScreen` provides pause options, and `LevelScreen` handles core game mechanics. Selecting "Load Game" defaults to Level 1, and "Save Game" currently outputs a placeholder message. Styled buttons and custom fonts enhance the user experience, supporting scalability for future expansion with minimal modifications.
 
