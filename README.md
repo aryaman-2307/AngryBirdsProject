@@ -2,69 +2,56 @@
 
 ## Project Overview
 
-This Angry Birds game project, implemented using the LibGDX framework, provides an interactive and immersive gaming experience inspired by the classic Angry Birds gameplay. The game includes multiple screens with easy navigation, enabling players to save progress, resume gameplay, and interact with a polished, custom-themed interface. Buttons are styled with unique fonts and themes for an engaging user experience.
+This Angry Birds project, implemented using the LibGDX framework, provides a static GUI experience inspired by classic Angry Birds gameplay. Currently, only buttons are interactive, allowing basic navigation between screens. Static images represent slingshots, birds, and obstacles without any physics or player-driven interactions. The design focuses on creating a polished user interface with a cohesive visual theme.
 
 ## Project Setup
 
 ### Prerequisites
 
-Ensure the following dependencies are installed:
+Ensure these are installed:
 - **Java Development Kit (JDK)**: Version 11 or higher.
-- **Gradle**: A build automation tool.
+- **Gradle**: Build automation tool.
 
-To verify installations, open a terminal and check the versions:
+To verify installations:
    ```bash
    java -version
    gradle -v
    ```
 
-### Steps:
+### Setup Steps
 
-**1. Clone the Repository**
-   Open a terminal and clone the repository to the local machine:
+1. **Clone the Repository**
    ```bash
    git clone https://github.com/aryaman-2307/AngryBirdsProject
    cd AngryBirdsProject
    ```
 
-**2. Set Up a Java Development Environment**
-   Use any Java IDE like **IntelliJ IDEA** or **Eclipse**, or a simple text editor.
+2. **Open the Project in a Java IDE**
+   - Use **IntelliJ IDEA** or **Eclipse**.
+   - Open the project and set up the JDK if prompted.
 
-   - **Using an IDE**:
-     - Open the project by selecting **File > Open** and navigating to the cloned project folder.
-     - Set up the JDK version if prompted.
-     - Wait for dependencies to load.
-
-   - **Using the Terminal**:
-     - Navigate to the project folder:
-       ```bash
-       cd AngryBirdsProject
-       ```
-     - Compile the `.java` files:
-       ```bash
-       javac -d bin src/*.java
-       ```
-       Adjust paths if files are organized in subdirectories.
-
-**3. Run the Project**
-   - For an IDE, locate the `LWJGL3Launcher` class under `lwjgl3/src/main/java/com/angrybirds/lwjgl3/Lwjgl3Launcher.java` and click **Run**.
-
+3. **Run the Project**
+   - Locate `LWJGL3Launcher` in `lwjgl3/src/main/java/com/angrybirds/lwjgl3/Lwjgl3Launcher.java` and click **Run**.
 
 ## Project Structure
 
-lwjgl3: Contains the LWJGL3Launcher, responsible for initializing and launching the game with the LWJGL3 backend. This setup manages window dimensions, display settings, and other core configurations essential for rendering the GUI and integrating with LibGDX’s windowing system.
+### Directories and Key Files
 
-The game code is organized across multiple classes and screens, each contributing to gameplay functionality. The primary code structure is found under `core/src/main/java/com/angrybirds` and consists of the following:
+- **lwjgl3**: Contains `LWJGL3Launcher`, which launches the game with the LWJGL3 backend, managing window setup, display settings, and other core configurations for GUI rendering.
   
-- **MenuScreen**: The main menu where players can resume a saved game, start a new one, or return to the home screen. Styled buttons enhance the user interface and align with the game’s visual theme.
-  
-- **PauseScreen**: Pauses the game, offering options to resume, save, or return to the main menu. A semi-transparent overlay and UI elements convey the paused state effectively.
-  
-- **LevelScreen**: Contains the core gameplay mechanics, including the slingshot and the physics-based trajectory calculations. Handles player interactions with the slingshot to launch birds at targets, aiming to simulate the classic Angry Birds experience.
+- **core/src/main/java/com/angrybirds**: Contains primary classes and screens:
+  - **MenuScreen**: Displays the main menu with options to start, save, or load games.
+  - **PauseScreen**: Displays a pause overlay with options to resume or save.
+  - **LevelScreen**: Displays static game elements (slingshot, obstacles).
 
-Each screen includes UI components such as `TextButton` and `Table`, utilizing LibGDX’s scene2d library for layout management. Custom fonts and button themes are defined in `uiskin.json`, creating a visually cohesive and engaging experience.
+- **Assets**: Includes sprites, fonts, and backgrounds for UI styling.
 
-### Assets and Resources
+## Current Features and Limitations
+
+- **Static Interface**: Displays static images without physics or interactivity.
+- **Button-Only Navigation**: Buttons provide limited functionality, such as navigating to different screens or pausing the game.
+
+## Assets and Resources
 
 The following resources were used to create sprites and images for the game:
 
@@ -94,5 +81,5 @@ To test the game’s functionality:
 
 ## Brief Explanation of the Code
 
-The code for this Angry Birds game, implemented in Java with the LibGDX framework, provides an interactive, multi-screen experience with essential functionalities such as game pause, save, and resume. The `MenuScreen` allows navigation, the `PauseScreen` provides pause options, and `LevelScreen` handles core game mechanics. Selecting "Load Game" defaults to Level 1, and "Save Game" currently outputs a placeholder message. Styled buttons and custom fonts enhance the user experience, supporting scalability for future expansion with minimal modifications.
+The code for this Angry Birds game, implemented in Java with the LibGDX framework, provides an interactive, multi-screen experience with essential functionalities such as game pause, save, and resume. The `MenuScreen` allows navigation, the `PauseScreen` provides pause options, and `LevelScreen` handles core game mechanics. Selecting "Load Game" defaults to Level 1, and "Save Game" currently outputs a "Game Saved!" message. Styled buttons and custom fonts enhance the user experience, supporting scalability for future expansion with minimal modifications.
 
