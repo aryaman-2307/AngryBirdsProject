@@ -10,8 +10,8 @@ This Angry Birds game project is implemented using the LibGDX framework, designe
 ### Prerequisites
 
 Ensure that the following dependencies are installed:
-- **Java Development Kit (JDK)**: Version 11 or higher (download [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)).
-- **Gradle**: A build automation tool (download and setup instructions [here](https://gradle.org/install/)).
+- **Java Development Kit (JDK)**: Version 11 or higher.
+- **Gradle**: A build automation tool.
 
 To verify installations, open a terminal and check the versions:
    ```bash
