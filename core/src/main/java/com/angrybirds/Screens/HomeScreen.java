@@ -4,7 +4,6 @@ import com.angrybirds.CustomFont;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -17,7 +16,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
 public class HomeScreen implements Screen {
 
@@ -75,14 +73,14 @@ public class HomeScreen implements Screen {
             }
         });
 
-        table.add(playButton).pad(10).width(300).height(70).row();
-        table.add(loadGameButton).pad(10).width(300).height(70).row();
-        table.add(exitButton).pad(10).width(300).height(70).row();
+        table.add(playButton).pad(20).width(300).height(70).row();
+        table.add(loadGameButton).pad(20).width(300).height(70).row();
+        table.add(exitButton).pad(20).width(300).height(70).row();
         stage.addActor(table);
     }
 
     private TextButton createStyledButton(String text) {
-        BitmapFont font = generateCustomFont("C:\\Projects\\core\\assets\\angrybirds-regular.ttf", 30);
+        BitmapFont font = generateCustomFont("C:\\Projects\\core\\assets\\angrybirds-regular.ttf", 36);
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
         style.font = font;
 
