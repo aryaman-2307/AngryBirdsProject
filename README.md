@@ -19,26 +19,41 @@ To verify installations, open a terminal and check the versions:
    gradle -v
    ```
 
-### Steps
+### Steps:
 
-1. **Clone the Repository**
-   Clone the repository from version control system and navigate into the project directory.
+**1. Clone the Repository**
+   Open a terminal and clone the repository to the local machine using:
    ```bash
-   git clone <repository-url>
-   cd <repository-directory>
+   git clone https://github.com/aryaman-2307/AngryBirdsProject
+   cd AngryBirdsProject
    ```
 
-2. **Install Dependencies**
-   The project’s dependencies will be managed by Gradle. Run the following command to download and set up dependencies:
-   ```bash
-   gradle build
-   ```
+**2. Set Up a Java Development Environment**
+   Any Java IDE like **IntelliJ IDEA** or **Eclipse**, or just a simple text editor can be used.
 
-3. **Run the Project**
-   To start the game, use the Gradle run command. This will initiate the game with all configurations.
-   ```bash
-   gradle run
-   ```
+   - **Using an IDE**:
+     - Open the project in IDE by selecting **File > Open** and navigating to the cloned project folder.
+     - The IDE should recognize the project structure. It might ask to set up a JDK version; select the appropriate one.
+     - Wait for any dependencies to load.
+
+   - **Using the Terminal**:
+     - Navigate to the project folder:
+       ```bash
+       cd AngryBirdsProject
+       ```
+     - Compile the `.java` files:
+       ```bash
+       javac -d bin src/*.java
+       ```
+       Ensure the paths in the project align with this command; if files are organized in subdirectories, adjust paths accordingly.
+
+**3. Run the Project**
+   - For an an IDE, look for a `Main` or `App` class with a `main` method and click **Run**.
+   - For the terminal, navigate to the `bin` directory and execute the `main` class, such as:
+     ```bash
+     java -cp bin Main
+     ```
+     Replace `Main` with the actual main class name if it’s different.
 
 ## Project Structure
 
