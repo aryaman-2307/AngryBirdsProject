@@ -1,81 +1,91 @@
+Angry Birds Game - README
+Project Overview
+This Angry Birds game project, implemented using the LibGDX framework, provides an interactive and immersive gaming experience inspired by the classic Angry Birds gameplay. The game includes multiple screens with easy navigation, enabling players to save progress, resume gameplay, and interact with a polished, custom-themed interface. Buttons are styled with unique fonts and themes for an engaging user experience.
 
-# Angry Birds Game - README
+Project Setup
+Prerequisites
+Ensure the following dependencies are installed:
 
-## Project Overview
-
-This Angry Birds game project is implemented using the LibGDX framework, designed to provide an interactive and immersive gaming experience similar to the classic Angry Birds gameplay. With its multi-screen structure, the game offers a user-friendly interface and includes essential features like saving progress, resuming gameplay, and easy navigation between different screens. Players can navigate using buttons styled with custom fonts and themes, creating a polished and engaging game environment.
-
-## Project Setup
-
-### Prerequisites
-
-Ensure that the following dependencies are installed:
-- **Java Development Kit (JDK)**: Version 11 or higher.
-- **Gradle**: A build automation tool.
-
+Java Development Kit (JDK): Version 11 or higher.
+Gradle: A build automation tool.
 To verify installations, open a terminal and check the versions:
-   ```bash
-   java -version
-   gradle -v
-   ```
 
-### Steps:
+bash
+Copy code
+java -version
+gradle -v
+To install JDK and Gradle:
 
-**1. Clone the Repository**
-   Open a terminal and clone the repository to the local machine using:
-   ```bash
-   git clone https://github.com/aryaman-2307/AngryBirdsProject
-   cd AngryBirdsProject
-   ```
+JDK: Oracle JDK download or via SDKMAN (sdk install java 11.0.11-open).
+Gradle: Gradle Installation Guide.
+Steps:
+1. Clone the Repository Open a terminal and clone the repository to the local machine:
 
-**2. Set Up a Java Development Environment**
-   Any Java IDE like **IntelliJ IDEA** or **Eclipse**, or just a simple text editor can be used.
+bash
+Copy code
+git clone https://github.com/aryaman-2307/AngryBirdsProject
+cd AngryBirdsProject
+2. Set Up a Java Development Environment Use any Java IDE like IntelliJ IDEA or Eclipse, or a simple text editor.
 
-   - **Using an IDE**:
-     - Open the project in IDE by selecting **File > Open** and navigating to the cloned project folder.
-     - The IDE should recognize the project structure. It might ask to set up a JDK version; select the appropriate one.
-     - Wait for any dependencies to load.
+Using an IDE:
 
-   - **Using the Terminal**:
-     - Navigate to the project folder:
-       ```bash
-       cd AngryBirdsProject
-       ```
-     - Compile the `.java` files:
-       ```bash
-       javac -d bin src/*.java
-       ```
-       Ensure the paths in the project align with this command; if files are organized in subdirectories, adjust paths accordingly.
+Open the project by selecting File > Open and navigating to the cloned project folder.
+Set up the JDK version if prompted.
+Wait for dependencies to load.
+Using the Terminal:
 
-**3. Run the Project**
-   - For an an IDE, look for a `Main` or `App` class with a `main` method and click **Run**.
-   - For the terminal, navigate to the `bin` directory and execute the `main` class, such as:
-     ```bash
-     java -cp bin Main
-     ```
-     Replace `Main` with the actual main class name if it’s different.
+Navigate to the project folder:
+bash
+Copy code
+cd AngryBirdsProject
+Compile the .java files:
+bash
+Copy code
+javac -d bin src/*.java
+Adjust paths if files are organized in subdirectories.
+3. Run the Project
 
-## Project Structure
+For an IDE, locate the LWJGL3Launcher class under core/src/main/java/com/angrybirds and click Run.
+For the terminal, navigate to the bin directory and execute:
+bash
+Copy code
+java -cp bin com.angrybirds.LWJGL3Launcher
+Project Structure
+The game code is organized across multiple classes and screens, each contributing to gameplay functionality. The primary code structure is found under core/src/main/java/com/angrybirds and consists of the following:
 
-The game code is organized across multiple classes and screens, each serving a specific purpose in the gameplay experience:
+LWJGL3Launcher: Initializes the game. Acts as the entry point for launching the project using the LWJGL3 framework, setting up the window and managing essential configurations.
 
-- **MenuScreen**: Serves as the main menu where players can resume a saved game or return to the home screen. It uses custom button styles to enhance the UI experience.
-  
-- **PauseScreen**: This screen pauses the game, providing options to resume gameplay, save progress, or return to the home screen. It features a semi-transparent overlay that signifies the paused state, enhancing visual clarity.
+MenuScreen: The main menu where players can resume a saved game, start a new one, or return to the home screen. Styled buttons enhance the user interface and align with the game’s visual theme.
 
-Each screen includes UI components like `TextButton` and `Table`, using LibGDX's scene2d library to manage layouts and button styles. Custom fonts and button themes, defined in `uiskin.json`, create an intuitive and polished interface that enhances gameplay immersion.
+PauseScreen: Pauses the game, offering options to resume, save, or return to the main menu. A semi-transparent overlay and UI elements convey the paused state effectively.
 
-## Testing the Project
+GameplayScreen: Contains the core gameplay mechanics, including the slingshot and the physics-based trajectory calculations. Handles player interactions with the slingshot to launch birds at targets, aiming to simulate the classic Angry Birds experience.
 
-You can test the game functionality by following these steps:
-1. **Run the Project** as detailed in the setup instructions above.
-2. **Interact with the Game** using the following screen buttons:
-   - **Resume Game**: Resumes the current game session.
-   - **Save Game**: Saves your current progress for later access.
-   - **Home**: Returns to the home screen, where you can start a new session or return to the menu.
+Each screen includes UI components such as TextButton and Table, utilizing LibGDX’s scene2d library for layout management. Custom fonts and button themes are defined in uiskin.json, creating a visually cohesive and engaging experience.
 
-## Brief Explanation of the Code
+Assets and Resources
+The following resources were used to create sprites and images for the game:
 
-The code for this Angry Birds game is implemented in Java, using the LibGDX framework to create an interactive, multi-screen game. The MenuScreen class provides an intuitive navigation experience, allowing players to resume or restart the game. The PauseScreen adds functionality to pause gameplay, save progress, or return to the main screen. Currently, selecting "Load Game" defaults to Level 1, and "Save Game" only prints a placeholder message. Custom-styled buttons and fonts enhance the UI, making gameplay more immersive and accessible. Designed with scalability in mind, the project structure supports future expansion with minimal modifications.
+Sprites and Character Images:
+King Pig
+Minion Pigs
+Chef Pig
+Angry Birds Style Font
+Game Environment Elements:
+Slingshot
+Wood Blocks
+Stone Blocks
+Glass
+Miscellaneous:
+Additional Angry Birds PNGs
+Loading Screens
+Testing the Project
+To test the game’s functionality:
 
----
+Run the Project as per the setup instructions.
+Interact with the Game using screen buttons:
+Resume Game: Resumes the current game session.
+Save Game: Saves progress for later access.
+Home: Returns to the home screen, allowing a new session or navigation to the main menu.
+Brief Explanation of the Code
+The code for this Angry Birds game, implemented in Java with the LibGDX framework, provides an interactive, multi-screen experience with essential functionalities such as game pause, save, and resume. The MenuScreen allows navigation, the PauseScreen provides pause options, and GameplayScreen handles core game mechanics. Selecting "Load Game" defaults to Level 1, and "Save Game" currently outputs a placeholder message. Styled buttons and custom fonts enhance the user experience, supporting scalability for future expansion with minimal modifications.
