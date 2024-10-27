@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -72,9 +71,9 @@ public class LevelSelectionScreen implements Screen {
         Table table = new Table();
         table.setFillParent(true);
         table.center();
-        table.add(level1Button).pad(10).width(300).height(70).row();
-        table.add(level2Button).pad(10).width(300).height(70).row();
-        table.add(level3Button).pad(10).width(300).height(70).row();
+        table.add(level1Button).pad(20).width(300).height(70).row();
+        table.add(level2Button).pad(20).width(300).height(70).row();
+        table.add(level3Button).pad(20).width(300).height(70).row();
 
         stage.addActor(table);
     }
