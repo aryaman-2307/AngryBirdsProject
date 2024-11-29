@@ -81,5 +81,5 @@ To test the game’s functionality:
 
 ## Brief Explanation of the Code
 
-The code for this Angry Birds game, implemented in Java with the LibGDX framework, provides an interactive, multi-screen experience with essential functionalities such as game pause, save, and resume. The `MenuScreen` allows navigation, the `PauseScreen` provides pause options, and `LevelScreen` handles core game mechanics. Selecting "Load Game" defaults to Level 1, and "Save Game" currently outputs a "Game Saved!" message. Styled buttons and custom fonts enhance the user experience, supporting scalability for future expansion with minimal modifications.
+The code for this Angry Birds game, implemented in Java with the LibGDX framework, provides an interactive, multi-screen experience with essential functionalities such as game pause, save, and resume. The `PauseScreen` provides pause options, and `LevelScreen` handles core game mechanics. Selecting "Load Game" defaults to Level 1, and "Save Game" currently outputs a "Game Saved!" message. Styled buttons and custom fonts enhance the user experience, supporting scalability for future expansion with minimal modifications.
 
