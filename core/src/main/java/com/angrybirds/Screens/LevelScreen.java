@@ -5,28 +5,28 @@ import com.angrybirds.BirdTypes.BlackBird;
 import com.angrybirds.BirdTypes.RedBird;
 import com.angrybirds.BirdTypes.YellowBird;
 import com.angrybirds.PigTypes.*;
-import com.angrybirds.StructureTypes.GlassStructure;
-import com.angrybirds.StructureTypes.RockStructure;
-import com.angrybirds.StructureTypes.Structures;
-import com.angrybirds.StructureTypes.WoodStructure;
+import com.angrybirds.StructureTypes.*;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
 import java.util.ArrayList;
@@ -44,19 +44,22 @@ public class LevelScreen implements Screen {
     private Texture backgroundTexture;
     private Viewport viewport;
     private OrthographicCamera camera;
+    private Music levelMusic;
 
     private List<Birds> birds;
     private List<Structures> structures;
     private List<Pigs> pigs;
+    private Birds slingshotBird;
     private Texture slingshotTexture;
-    private float slingshotX = 150; // Adjusted for larger screen
-    private float slingshotY = 200; // Adjusted for larger screen
-    private float slingshotWidth = 100;  // Increased size for slingshot
-    private float slingshotHeight = 180; // Increased size for slingshot
+    private final float slingshotX = 200;
+    private final float slingshotY = 290;
+    private final float slingshotWidth = 100;
+    private final float slingshotHeight = 180;
 
     private boolean isPaused;
     private boolean levelInitialized = false;
     private int level;
+    private final SpriteMaker spriteMaker;
 
     public LevelScreen(Game game, int level) {
         this.game = game;
@@ -64,6 +67,7 @@ public class LevelScreen implements Screen {
         birds = new ArrayList<>();
         structures = new ArrayList<>();
         pigs = new ArrayList<>();
+        spriteMaker = new SpriteMaker();
     }
 
     @Override
@@ -74,11 +78,21 @@ public class LevelScreen implements Screen {
         viewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT, camera);
         stage = new Stage(viewport, batch);
         Gdx.input.setInputProcessor(stage);
-
+        String musicPath = "C:\\Projects\\core\\assets\\music\\level" + level + "_sound.mp3";
+        levelMusic = Gdx.audio.newMusic(Gdx.files.internal(musicPath));
+        levelMusic.setLooping(true);
+        levelMusic.setVolume(0.5f);
+        levelMusic.play();
         skin = new Skin(Gdx.files.internal("uiskin.json"));
-        backgroundTexture = new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\levelScreen.jpg"));
+        backgroundTexture = new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\levelScreen.png"));
         slingshotTexture = new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\slingshot.png"));
-
+        stage.addListener(new InputListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                resetBirdIdleTimers();
+                return true;
+            }
+        });
         if (!levelInitialized) {
             initializeLevel();
             levelInitialized = true;
@@ -86,55 +100,73 @@ public class LevelScreen implements Screen {
         setupPauseButton();
     }
 
+    private void resetBirdIdleTimers() {
+        for (Birds bird : birds) {
+            bird.resetIdleTimer();
+        }
+    }
+
     private void initializeLevel() {
+        try{
         switch (level) {
             case 1:
-                birds.add(new RedBird(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\redAngryBird.png"))));
-                birds.get(0).setPosition(slingshotX + slingshotWidth / 2 - 30, slingshotY + slingshotHeight / 2 + 20);
+                slingshotBird = new RedBird(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\redAngryBird.png")));
+                slingshotBird.setPosition(slingshotX + slingshotWidth / 2 - 30, slingshotY + slingshotHeight / 2 + 30);
+                birds.add(slingshotBird);
 
-                structures.add(new GlassStructure(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\glass.png")), 1300, 200));
-                structures.add(new GlassStructure(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\glass.png")), 1335, 200));
-                pigs.add(new MediumPig(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\mediumPig.png")), 1300, 275));
-                pigs.add(new SmallPig(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\smallPig.png")), 1350,275 ));
+                Birds groundBird1 = new RedBird(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\redAngryBird.png")));
+                Birds groundBird2 = new RedBird(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\redAngryBird.png")));
+                groundBird1.setPosition(slingshotX + slingshotWidth / 2 - 100, 145);
+                groundBird2.setPosition(slingshotX + slingshotWidth / 2 - 160, 145);
+                birds.add(groundBird1);
+                birds.add(groundBird2);
+
+                structures.add(spriteMaker.woodlogMed(1200, 360, 90));
+                structures.add(spriteMaker.woodlogMed(1350, 360, 90));
+                structures.add(spriteMaker.woodlogMed(1275, 450, 0));
+                structures.add(spriteMaker.woodlogMed(1230, 540, 90));
+                structures.add(spriteMaker.woodlogMed(1320, 540, 90));
+                structures.add(spriteMaker.woodlogShort(1320, 630, 0));
+                structures.add(spriteMaker.woodlogVShort(1340, 660, 90));
+                structures.add(spriteMaker.woodlogShort(1320, 295, 0));
+                structures.add(spriteMaker.woodlogShort(1320, 395, 0));
+                structures.add(spriteMaker.glassLogShort(1290, 345, 90));
+                structures.add(spriteMaker.glassLogShort(1350, 345, 90));
+
+                pigs.add(new MediumPig(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\mediumPig.png")), 1335, 470));
                 break;
 
             case 2:
                 birds.add(new BlackBird(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\blackAngryBird.png"))));
-                birds.add(new RedBird(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\redAngryBird.png"))));
-                birds.get(0).setPosition(slingshotX + slingshotWidth / 2 - 30, slingshotY + slingshotHeight / 2 + 20);
-                birds.get(1).setPosition(slingshotX - 40 , slingshotY);
+                birds.getFirst().setPosition(slingshotX + slingshotWidth / 2 - 30, slingshotY + slingshotHeight / 2 + 30);
 
-                structures.add(new WoodStructure(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\wood.png")), 1300, 200));
-                structures.add(new WoodStructure(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\wood.png")), 1350, 200));
-                structures.add(new WoodStructure(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\wood.png")), 1400, 200));
-                structures.add(new WoodStructure(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\wood.png")), 1450, 200));
-                pigs.add(new MediumPig(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\mediumPig.png")), 1310, 290));
-                pigs.add(new MediumPig(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\mediumPig.png")), 1470, 290));
-                pigs.add(new LargePig(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\largePig.png")), 1360, 280));
+                // Level 2 Structures and Pigs
+                structures.add(spriteMaker.woodlogMed(500, 100, 15));
+                structures.add(spriteMaker.woodlogthick(600, 100, -10));
+                structures.add(spriteMaker.woodbox(650, 100, 5));
+                pigs.add(new MediumPig(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\mediumPig.png")), 505, 155));
+                pigs.add(new LargePig(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\largePig.png")), 550, 155));
                 break;
 
             case 3:
-                birds.add(new YellowBird(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\yellowAngryBird.png"))));
-                birds.add(new BlackBird(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\blackAngryBird.png"))));
                 birds.add(new RedBird(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\redAngryBird.png"))));
-                birds.get(0).setPosition(slingshotX + slingshotWidth / 2 - 30, slingshotY + slingshotHeight / 2 + 20);
-                birds.get(1).setPosition(slingshotX - 30 , slingshotY);
-                birds.get(2).setPosition(slingshotX - 90 , slingshotY + 10);
-
-                structures.add(new RockStructure(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\rock.png")), 1300, 200));
-                structures.add(new RockStructure(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\rock.png")), 1360, 200));
-                structures.add(new RockStructure(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\rock.png")), 1420, 200));
-                structures.add(new RockStructure(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\rock.png")), 1480, 200));
-                structures.add(new WoodStructure(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\wood.png")), 1310, 300));
-                structures.add(new WoodStructure(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\wood.png")), 1480, 300));
-                pigs.add(new LargePig(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\largePig.png")), 1310, 380));
-                pigs.add(new LargePig(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\largePig.png")), 1480, 380));
-                pigs.add(new BossPig(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\bossPig.png")), 1370, 300));
+                birds.add(new YellowBird(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\yellowAngryBird.png"))));
+                birds.getFirst().setPosition(slingshotX + slingshotWidth / 2 - 30, slingshotY + slingshotHeight / 2 + 30);
+                birds.get(1).setPosition(slingshotX + slingshotWidth / 2 - 80, slingshotY + slingshotHeight / 2 - 90);
+                // Level 3 Structures and Pigs
+                structures.add(spriteMaker.stoneLogMed(500, 100, 0));
+                structures.add(spriteMaker.glassLogShort(550, 100, -5));
+                structures.add(spriteMaker.stoneBox(600, 100, 10));
+                pigs.add(new MediumPig(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\mediumPig.png")), 510, 210));
+                pigs.add(new BossPig(new Texture(Gdx.files.internal("C:\\Projects\\core\\assets\\images\\bossPig.png")), 540, 155));
                 break;
 
             default:
                 System.out.println("Invalid level selected.");
                 break;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
@@ -165,6 +197,10 @@ public class LevelScreen implements Screen {
     }
 
     private BitmapFont generateCustomFont(String fontPath, int size) {
+        return getBitmapFont(fontPath, size);
+    }
+
+    static BitmapFont getBitmapFont(String fontPath, int size) {
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal(fontPath));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = size;
@@ -173,6 +209,7 @@ public class LevelScreen implements Screen {
         generator.dispose();
         return font;
     }
+
     public Texture getBackgroundTexture() {
         return backgroundTexture;
     }
@@ -269,7 +306,12 @@ public class LevelScreen implements Screen {
     }
 
     private void updateGame(float delta) {
-        // Update logic for birds, pigs, and structures.
+        for (Birds bird : birds) {
+            // Skip updating the slingshot bird's jumping behavior
+            if (bird == slingshotBird) continue;
+
+            bird.update(delta);
+        }
     }
 
     @Override
@@ -285,7 +327,12 @@ public class LevelScreen implements Screen {
     public void resume() {}
 
     @Override
-    public void hide() {}
+    public void hide() {
+        if (levelMusic != null) {
+            levelMusic.stop();
+            levelMusic.dispose();
+        }
+    }
 
     @Override
     public void dispose() {
@@ -293,5 +340,8 @@ public class LevelScreen implements Screen {
         stage.dispose();
         backgroundTexture.dispose();
         slingshotTexture.dispose();
+        if (levelMusic != null) {
+            levelMusic.dispose();
+        }
     }
 }
