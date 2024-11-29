@@ -157,7 +157,7 @@ An immersive **Angry Birds** inspired game developed with **LibGDX** and **Box2D
 
 ## 👨‍💻 Author
 
-- **Aryaman Gupta**
+- **Aryaman Singh**
   - [GitHub Profile](https://github.com/aryaman-2307)
 
 ---
