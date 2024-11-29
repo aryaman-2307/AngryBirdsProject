@@ -1,86 +1,117 @@
 # Angry Birds Project
 
-A custom implementation of the popular game **Angry Birds**, developed using **LibGDX** and the **Box2D physics engine**. This project focuses on realistic physics-based gameplay, where players launch birds to destroy structures and eliminate pigs.
-
-## 🚀 Features
-
-- **Physics Simulation:** Utilizes Box2D for realistic bird trajectories, collisions, and object destruction.
-- **Multiple Bird Types:** Includes unique bird abilities such as explosive black birds and fast yellow birds.
-- **Dynamic Level Design:** Supports varied structures and pig placements across levels.
-- **Collision Handling:** Interactive collision detection for damage calculations and object destruction.
-- **Slingshot Mechanics:** Drag-and-release mechanics for launching birds.
-- **Audio Effects:** Background music and sound effects for an engaging experience.
-- **Win/Lose Conditions:** Monitors game progression and determines outcomes based on pigs destroyed and birds remaining.
+An immersive **Angry Birds** inspired game developed with **LibGDX** and **Box2D**, blending realistic physics simulation with engaging gameplay mechanics. Players launch birds from a slingshot to topple structures and eliminate pigs in a strategic and visually engaging environment.
 
 ---
 
-## 🛠️ Built With
+## 🎯 Objectives
 
-- [LibGDX](https://libgdx.com/): Game development framework.
-- [Box2D](https://box2d.org/): Physics engine for realistic gameplay.
-- Java: Primary programming language for the project.
+- Launch birds using a slingshot.
+- Strategically destroy structures and eliminate all pigs to progress through levels.
+- Experience realistic physics-based interactions between game objects.
+
+---
+
+## 🏗️ Features
+
+### 🌌 Game Mechanics
+- **Realistic Physics Simulation:**  
+  Powered by Box2D, the game provides lifelike bird trajectories, structure destruction, and dynamic interactions.
+  
+- **Drag-and-Release Slingshot:**  
+  Intuitive controls allow players to drag and release birds to control trajectory and velocity.
+
+- **Unique Bird Types:**  
+  Each bird type comes with distinct characteristics:
+  - **Red Bird:** Standard bird with no special ability.
+  - **Yellow Bird:** Accelerates mid-air for added impact force.
+  - **Black Bird:** Explodes on impact, causing widespread destruction.
+
+### 🏢 Structures and Pigs
+- **Dynamic Structures:**  
+  Made up of destructible materials:
+  - **Wood, Glass, and Stone:** Each material has unique health and resistance to impacts.
+  
+- **Interactive Pigs:**  
+  Pigs have health bars and are removed when their health depletes. Positioned strategically to challenge the player.
+
+### 🕹️ Gameplay Experience
+- **Level Progression:**  
+  - Multiple levels with increasing complexity.
+  - Diverse layouts for structures and pig placements.
+  
+- **Win/Lose Conditions:**  
+  - **Win:** All pigs are destroyed before running out of birds.
+  - **Lose:** Birds are exhausted while pigs remain.
+
+### 🎵 Audio and Visuals
+- **Background Music:**  
+  Immersive level-specific tracks enhance the experience.
+  
+- **Dynamic Visuals:**  
+  Smooth animations for bird movements, structure collapses, and explosions.
+
+### 🔄 Replayability
+- **Reset and Retry:**  
+  Players can restart levels to optimize their strategy.
+
+### 🛠️ Debugging Tools
+- **Box2DDebugRenderer:**  
+  Visualize the physics world for debugging purposes.
+  
+- **Detailed Logging:**  
+  Comprehensive logs for collisions, damage calculations, and game state updates.
 
 ---
 
 ## 📂 Project Structure
 
-### Key Components
-
-- **`BirdTypes/`**  
-  Contains classes for different bird types (`RedBird`, `YellowBird`, `BlackBird`), each with unique attributes and behaviors.
-
-- **`PigTypes/`**  
-  Manages the pig entities, including health tracking and damage handling.
-
-- **`StructureTypes/`**  
-  Represents destructible structures, such as wood, glass, and stone.
-
-- **`Screens/`**  
-  Includes game screens like `LevelScreen`, `WinScreen`, and `LoseScreen`.
-
-- **`Slingshot/`**  
-  Handles slingshot mechanics for launching birds.
+- **`BirdTypes/`:** Classes for different bird types (`RedBird`, `YellowBird`, `BlackBird`), each with unique properties and behaviors.
+- **`PigTypes/`:** Classes for managing pigs, including health management and collision detection.
+- **`StructureTypes/`:** Classes for structures, supporting various materials like wood, glass, and rock.
+- **`Screens/`:** Game screens, including:
+  - `LevelScreen`: Core gameplay.
+  - `WinScreen`: Displays when the level is completed successfully.
+  - `LoseScreen`: Displays when the player loses the level.
+- **`Slingshot/`:** Handles bird launching mechanics.
 
 ---
 
-## 🕹️ Gameplay
+## 🕹️ Gameplay Instructions
 
-1. **Objective:**  
-   Launch birds to destroy structures and eliminate all pigs.
+### Launch Birds
+1. **Drag:** Hold and drag the bird backward on the slingshot to aim.
+2. **Release:** Let go to launch the bird with calculated velocity and direction.
 
-2. **Controls:**  
-   - Drag the bird on the slingshot to aim.
-   - Release to launch the bird with calculated velocity.
-   - Observe the physics-based destruction of structures and pigs.
-
-3. **Win/Lose Conditions:**  
-   - **Win:** All pigs are destroyed.
-   - **Lose:** No pigs are destroyed before running out of birds.
-
+### Strategy
+- Target weak points in structures to maximize destruction.
+- Each structure destruction is equal to 100 points.
+- Each pig destruction is equal to 1000 points.
 ---
 
 ## 📦 Installation and Setup
 
 ### Prerequisites
-- **Java Development Kit (JDK)** 8 or higher.
-- **Gradle** for building the project.
-- **LibGDX Framework.**
+- **Java Development Kit (JDK):** Version 8 or higher.
+- **Gradle:** For building and running the project.
+- **LibGDX Framework:** For game development.
 
 ### Steps
-1. Clone the repository:
+1. **Clone the Repository:**
    ```bash
    git clone https://github.com/aryaman-2307/AngryBirdsProject.git
    cd AngryBirdsProject
    ```
 
-2. Open the project in your favorite IDE (e.g., IntelliJ IDEA, Eclipse).
+2. **Open the Project:**
+   Open the project in an IDE like IntelliJ IDEA or Eclipse.
 
-3. Build the project using Gradle:
+3. **Build the Project:**
    ```bash
    ./gradlew build
    ```
 
-4. Run the project:
+4. **Run the Game:**
    ```bash
    ./gradlew desktop:run
    ```
@@ -89,34 +120,44 @@ A custom implementation of the popular game **Angry Birds**, developed using **L
 
 ## 🔧 Configuration
 
-- **Assets:**  
-  Game assets such as images and sounds are located in the `core/assets/` directory. Ensure these paths are correct in your code.
+### Assets
+- Located in the `core/assets/` directory:
+  - Images (`images/`)
+  - Sounds (`sounds/`)
+  - Background music (`music/`)
 
-- **Level Design:**  
-  Modify the `initializeLevel` method in `LevelScreen` to create new levels with custom structures, pigs, and bird arrangements.
-
-- **Collision Handling:**  
-  Update the `handleCollisions` method to add new collision responses.
+### Level Customization
+- Modify the `initializeLevel` method in `LevelScreen` to:
+  - Add new bird types.
+  - Rearrange pigs and structures.
+  - Introduce unique level designs.
 
 ---
 
-## 🐛 Debugging
+## 🐛 Troubleshooting
 
-- Use the `Box2DDebugRenderer` for visualizing the physics world:
-  ```java
-  debugRenderer.render(world, camera.combined.scl(PPM));
-  ```
+### Common Issues
+1. **Birds Falling Off-Screen:**
+   - Ensure ground bodies are properly initialized in `createGround()`.
 
-- Check logs for collision-related errors:
-  ```java
-  Gdx.app.log("Collision Info", "Body A: " + dataA + ", Body B: " + dataB);
-  ```
-  
+2. **Collision Detection Errors:**
+   - Verify that all game entities (`Birds`, `Pigs`, `Structures`) have their `userData` set correctly.
+
+3. **Debugging Tools:**
+   - Use the `Box2DDebugRenderer`:
+     ```java
+     debugRenderer.render(world, camera.combined.scl(PPM));
+     ```
+   - Enable detailed logs for collisions:
+     ```java
+     Gdx.app.log("Collision Info", "Body A: " + dataA + ", Body B: " + dataB);
+     ```
+
 ---
 
 ## 👨‍💻 Author
 
-- **Aryaman Gupta**  
-  - GitHub: [aryaman-2307](https://github.com/aryaman-2307)
+- **Aryaman Gupta**
+  - [GitHub Profile](https://github.com/aryaman-2307)
 
-
+---
