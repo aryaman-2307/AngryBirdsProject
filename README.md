@@ -1,85 +1,122 @@
-# Angry Birds Game - README
+# Angry Birds Project
 
-## Project Overview
+A custom implementation of the popular game **Angry Birds**, developed using **LibGDX** and the **Box2D physics engine**. This project focuses on realistic physics-based gameplay, where players launch birds to destroy structures and eliminate pigs.
 
-This Angry Birds project, implemented using the LibGDX framework, provides a static GUI experience inspired by classic Angry Birds gameplay. Currently, only buttons are interactive, allowing basic navigation between screens. Static images represent slingshots, birds, and obstacles without any physics or player-driven interactions. The design focuses on creating a polished user interface with a cohesive visual theme.
+## 🚀 Features
 
-## Project Setup
+- **Physics Simulation:** Utilizes Box2D for realistic bird trajectories, collisions, and object destruction.
+- **Multiple Bird Types:** Includes unique bird abilities such as explosive black birds and fast yellow birds.
+- **Dynamic Level Design:** Supports varied structures and pig placements across levels.
+- **Collision Handling:** Interactive collision detection for damage calculations and object destruction.
+- **Slingshot Mechanics:** Drag-and-release mechanics for launching birds.
+- **Audio Effects:** Background music and sound effects for an engaging experience.
+- **Win/Lose Conditions:** Monitors game progression and determines outcomes based on pigs destroyed and birds remaining.
+
+---
+
+## 🛠️ Built With
+
+- [LibGDX](https://libgdx.com/): Game development framework.
+- [Box2D](https://box2d.org/): Physics engine for realistic gameplay.
+- Java: Primary programming language for the project.
+
+---
+
+## 📂 Project Structure
+
+### Key Components
+
+- **`BirdTypes/`**  
+  Contains classes for different bird types (`RedBird`, `YellowBird`, `BlackBird`), each with unique attributes and behaviors.
+
+- **`PigTypes/`**  
+  Manages the pig entities, including health tracking and damage handling.
+
+- **`StructureTypes/`**  
+  Represents destructible structures, such as wood, glass, and stone.
+
+- **`Screens/`**  
+  Includes game screens like `LevelScreen`, `WinScreen`, and `LoseScreen`.
+
+- **`Slingshot/`**  
+  Handles slingshot mechanics for launching birds.
+
+---
+
+## 🕹️ Gameplay
+
+1. **Objective:**  
+   Launch birds to destroy structures and eliminate all pigs.
+
+2. **Controls:**  
+   - Drag the bird on the slingshot to aim.
+   - Release to launch the bird with calculated velocity.
+   - Observe the physics-based destruction of structures and pigs.
+
+3. **Win/Lose Conditions:**  
+   - **Win:** All pigs are destroyed.
+   - **Lose:** No pigs are destroyed before running out of birds.
+
+---
+
+## 📦 Installation and Setup
 
 ### Prerequisites
+- **Java Development Kit (JDK)** 8 or higher.
+- **Gradle** for building the project.
+- **LibGDX Framework.**
 
-Ensure these are installed:
-- **Java Development Kit (JDK)**: Version 11 or higher.
-- **Gradle**: Build automation tool.
-
-To verify installations:
+### Steps
+1. Clone the repository:
    ```bash
-   java -version
-   gradle -v
-   ```
-
-### Setup Steps
-
-1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/aryaman-2307/AngryBirdsProject
+   git clone https://github.com/aryaman-2307/AngryBirdsProject.git
    cd AngryBirdsProject
    ```
 
-2. **Open the Project in a Java IDE**
-   - Use **IntelliJ IDEA** or **Eclipse**.
-   - Open the project and set up the JDK if prompted.
+2. Open the project in your favorite IDE (e.g., IntelliJ IDEA, Eclipse).
 
-3. **Run the Project**
-   - Locate `LWJGL3Launcher` in `lwjgl3/src/main/java/com/angrybirds/lwjgl3/Lwjgl3Launcher.java` and click **Run**.
+3. Build the project using Gradle:
+   ```bash
+   ./gradlew build
+   ```
 
-## Project Structure
+4. Run the project:
+   ```bash
+   ./gradlew desktop:run
+   ```
 
-### Directories and Key Files
+---
 
-- **lwjgl3**: Contains `LWJGL3Launcher`, which launches the game with the LWJGL3 backend, managing window setup, display settings, and other core configurations for GUI rendering.
+## 🔧 Configuration
+
+- **Assets:**  
+  Game assets such as images and sounds are located in the `core/assets/` directory. Ensure these paths are correct in your code.
+
+- **Level Design:**  
+  Modify the `initializeLevel` method in `LevelScreen` to create new levels with custom structures, pigs, and bird arrangements.
+
+- **Collision Handling:**  
+  Update the `handleCollisions` method to add new collision responses.
+
+---
+
+## 🐛 Debugging
+
+- Use the `Box2DDebugRenderer` for visualizing the physics world:
+  ```java
+  debugRenderer.render(world, camera.combined.scl(PPM));
+  ```
+
+- Check logs for collision-related errors:
+  ```java
+  Gdx.app.log("Collision Info", "Body A: " + dataA + ", Body B: " + dataB);
+  ```
   
-- **core/src/main/java/com/angrybirds**: Contains primary classes and screens:
-  - **MenuScreen**: Displays the main menu with options to start, save, or load games.
-  - **PauseScreen**: Displays a pause overlay with options to resume or save.
-  - **LevelScreen**: Displays static game elements (slingshot, obstacles).
+---
 
-- **Assets**: Includes sprites, fonts, and backgrounds for UI styling.
+## 👨‍💻 Author
 
-## Current Features and Limitations
+- **Aryaman Gupta**  
+  - GitHub: [aryaman-2307](https://github.com/aryaman-2307)
 
-- **Static Interface**: Displays static images without physics or interactivity.
-- **Button-Only Navigation**: Buttons provide limited functionality, such as navigating to different screens or pausing the game.
-
-## Assets and Resources
-
-The following resources were used to create sprites and images for the game:
-
-- **Sprites and Character Images**:
-   - [King Pig](https://angrybirds.fandom.com/wiki/King_Pig?file=KingPigToons-SmileGrin.png)
-   - [Minion Pigs](https://angrybirds.fandom.com/wiki/Minion_Pigs/Small_Pig)
-   - [Chef Pig](https://angrybirds.fandom.com/wiki/Chef_Pig)
-   - [Angry Birds Style Font](https://www.dafont.com/angrybirds.font?psize=s)
-- **Game Environment Elements**:
-   - [Slingshot](https://angrybirds.fandom.com/wiki/Slingshot)
-   - [Wood Blocks](https://angrybirds.fandom.com/wiki/Wood)
-   - [Stone Blocks](https://angrybirds.fandom.com/wiki/Stone?file=Toons_Stone_Block.png)
-   - [Glass](https://angrybirds.fandom.com/wiki/Glass)
-- **Miscellaneous**:
-   - [Additional Angry Birds PNGs](https://www.freeiconspng.com/images/angry-birds-png)
-   - [Loading Screens](https://angrybirds.fandom.com/wiki/Angry_Birds_(series)/Loading_Screens)
-
-## Testing the Project
-
-To test the game’s functionality:
-
-1. **Run the Project** as per the setup instructions.
-2. **Interact with the Game** using screen buttons:
-   - **Resume Game**: Resumes the current game session.
-   - **Save Game**: Saves progress for later access.
-   - **Home**: Returns to the home screen, allowing a new session or navigation to the main menu.
-
-## Brief Explanation of the Code
-
-The code for this Angry Birds game, implemented in Java with the LibGDX framework, provides an interactive, multi-screen experience with essential functionalities such as game pause, save, and resume. The `PauseScreen` provides pause options, and `LevelScreen` handles core game mechanics. Selecting "Load Game" defaults to Level 1, and "Save Game" currently outputs a "Game Saved!" message. Styled buttons and custom fonts enhance the user experience, supporting scalability for future expansion with minimal modifications.
 
